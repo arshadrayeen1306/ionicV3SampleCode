@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-navbar color="toolbar">
+        <ion-title class="title">Restaurant list</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only color="royal" (click)="navcart()" class="header-btn-cart">
+                <ion-icon name="cart"></ion-icon>
+                <ion-badge class="carts" item-right color="danger">3</ion-badge>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="background">
+    <ion-searchbar (ionInput)="getItems($event)" placeholder="Type Item Name">
+    </ion-searchbar>
+    <ion-list *ngFor="let item of items ; let i=index ">
+        <!-- list -->
+        <ion-card style="border-radius: 10px !important;">
+            <ion-item text-wrap (click)="navigate(item)">
+                <!-- item -->
+                <ion-row class="catagory">
+                    <!-- row -->
+                    <ion-col col-4>
+                        <!-- col with 50  width -->
+                        <img src={{item.image_url}} alt="restaurantsName" />
+                    </ion-col>
+                    <ion-col col-8>
+                        <!-- col with 50% width -->
+                        <p class="item-name">{{item.name}}</p>
+                        <p class="item-detail" text-wrap>
+                            <span>{{item.address}}, {{item.area}}, {{item.city}}</span>
+                        </p>
+                        <p class="item-detail">Price :
+                            <span class="item-price">{{currency?.currencySymbol}} {{item.price}}
+                            </span>
+                        </p>
+
+                    </ion-col>
+                </ion-row>
+                <!--end row -->
+            </ion-item>
+        </ion-card>
+        <!-- item -->
+    </ion-list>
+</ion-content>
